@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE configuration   
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.tydic.ppm.model.StreamingNoLog" alias="streamingNoLog" />
+		<typeAlias type="com.tydic.ppm.model.EventType" alias="eventType" />
+		<typeAlias type="com.tydic.ppm.cxf.model.product.ProductInfo" alias="productInfo" />
+		<typeAlias type="com.tydic.ppm.model.PtyCode" alias="ptyCode"/>
+		<typeAlias type="com.tydic.ppm.model.PtyCodeType" alias="ptyCodeType"/>
+		<typeAlias type="com.tydic.ppm.model.Product" alias="product"/>
+		<typeAlias type="com.tydic.ppm.model.Offer" alias="offer"/>
+		<typeAlias type="com.tydic.ppm.model.PricingCombineGroup" alias="pricingCombineGroup"/>
+		<typeAlias type="com.tydic.ppm.model.ProductSpecUsingServiceSpecs" alias="prdSpecUsingSerSpecs"/>
+		<typeAlias type="com.tydic.ppm.model.ProductUsingResourceSpecs" alias="prdSpecUsingResSpecs"/>
+		<typeAlias type="com.tydic.ppm.model.ProductLogicResourceSpecs" alias="prdSpecLogicResSpecs"/>
+		<typeAlias type="com.tydic.ppm.model.CustSqlSelectors" alias="custSqlSelectors"/>
+		<typeAlias type="com.tydic.ppm.model.RentTariff" alias="rentTariff"/>
+		<typeAlias type="com.tydic.ppm.model.AcctItemType" alias="acctItemType"/>
+		<typeAlias type="com.tydic.ppm.model.Action" alias="action"/>
+		<typeAlias type="com.tydic.ppm.model.ActionOfferRel" alias="actionOfferRel"/>
+		<typeAlias type="com.tydic.ppm.model.PricingSection" alias="pricingSection"/>
+		<typeAlias type="com.tydic.ppm.model.DiscountCondition" alias="discountCondition"/>
+		<typeAlias type="com.tydic.ppm.model.DiscountExpress" alias="discountExpress"/>
+		<typeAlias type="com.tydic.ppm.model.DiscountRep" alias="discountRep"/>
+		<typeAlias type="com.tydic.ppm.model.DiscountRepGroup" alias="discountRepGroup"/>
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.tydic.fm.mybatis.pages.TPageInterceptor">
+			<property name="databaseType" value="oracle" />
+		</plugin>
+	</plugins>
+</configuration>

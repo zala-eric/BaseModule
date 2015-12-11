@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="    
+    http://www.springframework.org/schema/beans      
+    http://www.springframework.org/schema/beans/spring-beans.xsd      
+    http://www.springframework.org/schema/context      
+    http://www.springframework.org/schema/context/spring-context.xsd     
+    http://www.springframework.org/schema/aop     
+    http://www.springframework.org/schema/aop/spring-aop.xsd     
+    http://www.springframework.org/schema/tx     
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- sqlSessionFactory工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql-config/*.xml" />
+		<property name="configLocation" value="classpath:fm.ppmWeb.config.xml" />
+	</bean>
+	<!--  sqlSessionFactory工厂结束 -->
+	<!-- 动态数据源 -->
+	<bean id="routeSwith" class="com.tydic.fm.mybatis.impl.RouteSwithImpl"></bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+		<property name="targetSqlSessionFactorys">
+			<map>
+				<entry key="dataSource" value-ref="sqlSessionFactory" />
+			</map>
+		</property>
+		<property name="routeSwith" ref="routeSwith"></property>
+	</bean>
+	<bean id="sqlSessionDaoSupport" class="com.tydic.fm.mybatis.dao.SqlSessionDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	<!-- 动态数据源结束 -->
+</beans> 
